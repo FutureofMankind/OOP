@@ -6,7 +6,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.average_grade = ()
+        self.average_grade = []
 
     def rate_lec(self, lecturer, course, appraisal):
         if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:
@@ -58,7 +58,7 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.appraisals = {}
-        self.average_appraisal = ()
+        self.average_appraisal = []
 
     def avg(self, lecturer, appraisal):
         for lecturer,  appraisal in self.appraisals[appraisal].values():
@@ -91,13 +91,20 @@ some_student_2.finished_courses += ['Python']
 some_student_2.courses_in_progress += ['Java']
 some_student_2.rate_lec(some_lecturer_2, 'Java', 10)
 
+some_student_3 = Student('Bruce', 'Dickinson', 'Male')
+some_student_3.finished_courses += ['Python']
+some_student_3.courses_in_progress += ['Java']
+some_student_3.rate_lec(some_lecturer_2, 'Java', 8)
+
 some_reviewer_1 = Reviewer('Maria', 'Brink')
 some_reviewer_1.rate_hw(some_student_1, 'Python', 10)
 some_reviewer_2 = Reviewer('Zoltan', 'Bathory')
 some_reviewer_2.rate_hw(some_student_2, 'Java', 7)
+some_reviewer_2.rate_hw(some_student_3, 'Java', 6)
 
 print(some_student_1)
 print(some_student_2)
+print(some_student_3)
 print(some_reviewer_1)
 print(some_reviewer_2)
 print(some_lecturer_1)
@@ -105,3 +112,35 @@ print(some_lecturer_2)
 
 print(some_student_1.grades)
 print(some_student_2.grades)
+print(some_student_3.grades)
+
+print(some_lecturer_1.appraisals)
+print(some_lecturer_2.appraisals)
+
+studentlist = []
+studentlist.append(some_student_1)
+studentlist.append(some_student_2)
+studentlist.append(some_student_3)
+
+lecturerlist = []
+lecturerlist.append(some_lecturer_1)
+lecturerlist.append(some_lecturer_2)
+
+def studentgrade(studentlist, course):
+    for student in studentlist:
+        if course in student.grades[courses] == [Java]:
+            average_grade = float(sum(grade) / len(grade))
+        else:
+            return 'Error'
+    return average_grade
+
+def lecturergrade(lecturerlist, course):
+    for lecturer in lecturerlist:
+        if course in self.appraisals[courses] == [Python]:
+            average_appraisal = float(sum(grade) / len(grade))
+        else:
+            return 'Error'
+    return average_appraisal
+
+print(studentgrade)
+print(lecturergrade)
